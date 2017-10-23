@@ -1,6 +1,5 @@
 package com.arproject.arproject.service;
 
-
 import com.arproject.arproject.model.Visitor;
 import com.arproject.arproject.repository.VisitorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +18,18 @@ public class VisitorServiceImpl implements VisitorService {
     @Override
     public Visitor addVisitor(Visitor visitor) {
         return visitorRepository.save(visitor);
+    }
+
+    @Override
+    public Visitor findByEmail(String email) {
+        List<Visitor> allVisitors = visitorRepository.findAll();
+
+        for (Visitor visitor: allVisitors) {
+            if(visitor.getVisitorEmail().equals(email)) {
+                return visitor;
+            }
+        }
+        return null;
     }
 
     @Override

@@ -23,17 +23,17 @@ public class Visitor {
 
     public void setId(int id) { this.id = id; }
 
-    @Table(name = "visitorname")
+    @Column(name = "visitorname")
     public String getVisitorName() { return visitorName; }
 
     public void setVisitorName(String visitorName) { this.visitorName = visitorName; }
 
-    @Table(name = "visitoremail")
+    @Column(name = "visitoremail")
     public String getVisitorEmail() { return visitorEmail; }
 
     public void setVisitorEmail(String visitorEmail) { this.visitorEmail = visitorEmail; }
 
-    @Table(name = "comments")
+    @Column(name = "comments")
     public String getComments() { return comments; }
 
     public void setComments(String comments) { this.comments = comments; }
