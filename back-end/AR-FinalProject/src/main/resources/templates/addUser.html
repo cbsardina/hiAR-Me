@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8" />
+    <title>Add New User</title>
+    <link rel="stylesheet" href="../static/styles"/>
+</head>
+<body>
+
+<header>
+    <h1 style="text-align: center">Create Your User Profile</h1>
+</header>
+
+<!--<div style="display: flex; flex-direction: row; justify-content: space-around">-->
+    <!--<div sec:authorize="isAuthenticated()">-->
+        <!--<form th:action="@{/logout}" method="post">-->
+            <!--<input type="submit" value="Sign Out"/>-->
+        <!--</form>-->
+    <!--</div>-->
+    <!--<a href="/customers"><h3>Back</h3></a>-->
+<!--</div>-->
+
+
+<div class="addUser">
+    <form name="addForm" action="/create_user" method="POST">
+        <input type="text" name="userName" placeholder="Your Name"/>
+        <input type="text" name="lastName" placeholder="Last Name"/>
+        <input type="email" name="email" placeholder="email@email.com"/>
+        <input type="tel" name="phone" placeholder="XXX-XXX-XXXX" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="Please use the following format: XXX-XXX-XXXX"/>
+        <button style="margin: .5em auto" type="submit">Update</button>
+    </form>
+</div>
+
+</body>
+</html>

@@ -14,6 +14,7 @@ public class ArUserFile {
     private String fileDescription;
     private String arUserFile;
     private ArUser arUser;
+    private GenericUser genericUser;
 
   // *** POJO ***
     public ArUserFile() {}
@@ -26,6 +27,14 @@ public class ArUserFile {
     public ArUser getArUser() { return arUser; }
 
     public void setArUser(ArUser arUser) { this.arUser = arUser; }
+
+    //TODO: this needs to be adjusted in DB
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "genericuser_id")
+    public GenericUser getGenericUser() { return genericUser; }
+
+    public void setGenericUser(GenericUser genericUser) { this.genericUser = genericUser; }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,8 +57,7 @@ public class ArUserFile {
 
     public void setArUserFile(String arUserFile) { this.arUserFile = arUserFile; }
 
-  // * * * * * * * * *
-
+    // * * * * * * * * *
 
     @Override
     public boolean equals(Object o) {
@@ -67,14 +75,16 @@ public class ArUserFile {
     }
 
     // *** toString ***
+
     @Override
     public String toString() {
         return "ArUserFile{" +
-                "objId=" + id +
+                "id=" + id +
                 ", fileType='" + fileType + '\'' +
                 ", fileDescription='" + fileDescription + '\'' +
                 ", arUserFile='" + arUserFile + '\'' +
                 ", arUser=" + arUser +
+                ", genericUser=" + genericUser +
                 '}';
     }
 }
