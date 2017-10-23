@@ -1,9 +1,9 @@
 package com.arproject.arproject.service;
 
 import com.arproject.arproject.model.ArUser;
-import com.arproject.arproject.model.ArUserFile;
+import com.arproject.arproject.model.ArUserObject;
 import com.arproject.arproject.repository.ArUserRepository;
-import com.arproject.arproject.repository.ArUserFileRepository;
+import com.arproject.arproject.repository.ArUserObjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ public class ArUserServiceImpl implements ArUserService {
     ArUserRepository arUserRepository;
 
     @Autowired
-    ArUserFileRepository arUserFileRepository;
+    ArUserObjectRepository arUserObjectRepository;
 
 // ========== ArUser Methods ==========
 
@@ -26,7 +26,7 @@ public class ArUserServiceImpl implements ArUserService {
     @Override
     public ArUser findArUserById(int id) {
         ArUser arUser = arUserRepository.findOne(id);
-        arUser.getArUserFiles().size();
+        arUser.getArUserObjects().size();
         return arUser;
     }
 
@@ -68,27 +68,27 @@ public class ArUserServiceImpl implements ArUserService {
         arUserRepository.deleteAll();
     }
 
-// ========== ArUserFile Methods ==========
+// ========== ArUserObject Methods ==========
 
   // ----- User addNewObject
     @Override
-    public ArUser addNewFile(ArUserFile arUserFile) {
-            arUserFileRepository.save(arUserFile);
-        ArUser arUser = arUserRepository.findOne(arUserFile.getArUser().getId());
-            arUser.getArUserFiles().add(arUserFile);
+    public ArUser addNewObject(ArUserObject arUserObject) {
+            arUserObjectRepository.save(arUserObject);
+        ArUser arUser = arUserRepository.findOne(arUserObject.getArUser().getId());
+            arUser.getArUserObjects().add(arUserObject);
             arUserRepository.save(arUser);
 
-        return findArUserById(arUserFile.getArUser().getId());
+        return findArUserById(arUserObject.getArUser().getId());
 
     }
 
   // ----- User deleteObject -----
     @Override
-    public ArUser deleteFile(int arUserId, int objectId) {
-        ArUserFile arUserFile = arUserFileRepository.findOne(objectId);
-            arUserFileRepository.delete(objectId);
+    public ArUser deleteObject(int arUserId, int objectId) {
+        ArUserObject arUserObject = arUserObjectRepository.findOne(objectId);
+            arUserObjectRepository.delete(objectId);
         ArUser arUser = arUserRepository.findOne(arUserId);
-            arUser.getArUserFiles().remove(arUserFile);
+            arUser.getArUserObjects().remove(arUserObject);
             arUserRepository.save(arUser);
 
         return findArUserById(arUserId);

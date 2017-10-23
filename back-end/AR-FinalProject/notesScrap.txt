@@ -8,12 +8,12 @@ Complete ArUser object:
 	"github": null;
 	"portfolio": null;
 	"image": null;
-	"arUserFiles":[
+	"arUserObjects":[
 		{
 			"id": null;
-			"fileType": null;
-			"fileDescription": null;
-			"arUserFile": null;
+			"fileName": null;
+			"objectDescription": null;
+			"arUserObject": null;
 			"arUser": null;
 		}
 	]

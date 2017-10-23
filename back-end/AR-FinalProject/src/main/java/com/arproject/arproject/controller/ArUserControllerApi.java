@@ -1,7 +1,7 @@
 package com.arproject.arproject.controller;
 
 import com.arproject.arproject.model.ArUser;
-import com.arproject.arproject.model.ArUserFile;
+import com.arproject.arproject.model.ArUserObject;
 import com.arproject.arproject.service.ArUserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,12 +36,12 @@ public class ArUserControllerApi {
         return arUserService.updateArUser(updatesToUser);
     }
 
-    @PostMapping("/api/update_user/{userName}/add_file")
+    @PostMapping("/api/update_user/{userName}/add_object")
     public ArUser updateArUserAddFile(@PathVariable("userName") String userName, @RequestBody String json) throws IOException {
-        ArUserFile newArUserFile = objMap.readValue(json, ArUserFile.class);
+        ArUserObject newArUserObject = objMap.readValue(json, ArUserObject.class);
         ArUser foundArUser = arUserService.findByUserName(userName);
-            newArUserFile.setArUser(foundArUser);
-        return arUserService.addNewFile(newArUserFile);
+            newArUserObject.setArUser(foundArUser);
+        return arUserService.addNewObject(newArUserObject);
     }
 
   // *** GET USER ***
