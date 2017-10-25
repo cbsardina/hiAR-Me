@@ -3,7 +3,7 @@ Complete ArUser object:
 {
 	"id":null;
 	"userName": null;
-	"name": null;
+	"fullName": null;
 	"resume": null;
 	"github": null;
 	"portfolio": null;
@@ -12,9 +12,9 @@ Complete ArUser object:
 		{
 			"id": null;
 			"fileName": null;
-			"objectDescription": null;
-			"arUserObject": null;
-			"arUser": null;
+			"itemDescription": null;
+			"uzerItem": null;
+			"uzer": null;
 		}
 	]
 }

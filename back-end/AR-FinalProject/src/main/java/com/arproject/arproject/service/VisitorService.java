@@ -7,7 +7,6 @@ import java.util.List;
 public interface VisitorService {
 
     Visitor addVisitor(Visitor visitor);
-    Visitor findByEmail(String email);
     Visitor getVisitor(int id);
     List<Visitor> getAllVisitors();
 

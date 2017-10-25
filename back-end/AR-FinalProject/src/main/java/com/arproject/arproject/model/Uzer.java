@@ -5,39 +5,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "aruser")
-public class ArUser {
+@Table(name = "uzer")
+public class Uzer {
+
+    private int id;
+    private String userName;
+    private String fullName;
+    private String userEmail;
+    private List<UzerItem> uzerItems = new ArrayList<>();
+
+  // *** GETTERs/SETTERs ***
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Column(name = "username")
-    private String userName;
-    @Column(name = "name")
-    private String name;
-    @Column(name = "useremail")
-    private String userEmail;
-    @OneToMany(mappedBy = "aruser", fetch = FetchType.LAZY)
-    private List<ArUserObject> arUserObjects = new ArrayList<>();
-
-  // *** GETTERs/SETTERs ***
     public int getId() { return id; }
 
     public void setId(int id) { this.id = id; }
 
+    @Column(name = "username")
     public String getUserName() { return userName; }
 
     public void setUserName(String userName) { this.userName = userName; }
 
-    public String getName() { return name; }
+    @Column(name = "fullname")
+    public String getFullName() { return fullName; }
 
-    public void setName(String name) { this.name = name; }
+    public void setFullName(String fullName) { this.fullName = fullName; }
 
+    @Column(name = "useremail")
     public String getUserEmail() { return userEmail; }
 
     public void setUserEmail(String userEmail) { this.userEmail = userEmail; }
 
-    public List<ArUserObject> getArUserObjects() { return arUserObjects; }
+    @OneToMany(mappedBy = "uzer", fetch = FetchType.LAZY)
+    public List<UzerItem> getUzerItems() { return uzerItems; }
 
     // *** Equals & HashCode ***
     @Override
@@ -45,9 +46,9 @@ public class ArUser {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ArUser arUser = (ArUser) o;
+        Uzer uzer = (Uzer) o;
 
-        return id == arUser.id;
+        return id == uzer.id;
     }
 
     @Override
@@ -59,12 +60,12 @@ public class ArUser {
 
     @Override
     public String toString() {
-        return "ArUser{" +
+        return "Uzer{" +
                 "id=" + id +
                 ", userName='" + userName + '\'' +
-                ", name='" + name + '\'' +
+                ", fullName='" + fullName + '\'' +
                 ", userEmail=" + userEmail +
-                ", arUserObjects=" + arUserObjects +
+                ", uzerItems=" + uzerItems +
                 '}';
     }
 }

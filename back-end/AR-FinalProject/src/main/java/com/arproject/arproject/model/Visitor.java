@@ -6,32 +6,33 @@ import javax.persistence.*;
 @Table(name = "visitor")
 public class Visitor {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "visitorname")
     private String visitorName;
-    @Column(name = "visitoremail")
     private String visitorEmail;
-    @Column(name = "comments")
-    private String comments;
+    private String visitorComments;
 
   // *** GETTERs/SETTERs ***
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() { return id; }
 
     public void setId(int id) { this.id = id; }
 
+    @Column(name = "visitorname")
     public String getVisitorName() { return visitorName; }
 
     public void setVisitorName(String visitorName) { this.visitorName = visitorName; }
 
+    @Column(name = "visitoremail")
     public String getVisitorEmail() { return visitorEmail; }
 
     public void setVisitorEmail(String visitorEmail) { this.visitorEmail = visitorEmail; }
 
-    public String getComments() { return comments; }
+    @Column(name = "visitorComments")
+    public String getVisitorComments() { return visitorComments; }
 
-    public void setComments(String comments) { this.comments = comments; }
+    public void setVisitorComments(String visitorComments) { this.visitorComments = visitorComments; }
 
   // * * * * * * * * * * * * * * * * * *
     @Override
@@ -57,7 +58,7 @@ public class Visitor {
                 "id=" + id +
                 ", visitorName='" + visitorName + '\'' +
                 ", visitorEmail='" + visitorEmail + '\'' +
-                ", comments='" + comments + '\'' +
+                ", visitorComments='" + visitorComments + '\'' +
                 '}';
     }
 }

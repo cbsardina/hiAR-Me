@@ -26,11 +26,6 @@ public class VisitorControllerApi {
         return visitorService.addVisitor(addVisitor); }
 
   // *** GET VISITOR ***
-    // --- BY EMAIL ---
-    @GetMapping("/api/get_one_visitor/{visitorEmail}")
-    public Visitor getOneVisitor(@PathVariable(name = "visitorEmail") String email) {
-        return visitorService.findByEmail(email); }
-
     // --- BY USER ID ---
     @GetMapping("/api/get_one_visitor/{visitorId}")
     public Visitor getOneVisitor(@PathVariable(name = "visitorId") int id) {

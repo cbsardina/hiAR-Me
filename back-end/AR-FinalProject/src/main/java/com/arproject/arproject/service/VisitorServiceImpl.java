@@ -23,19 +23,6 @@ public class VisitorServiceImpl implements VisitorService {
 
     @Transactional(readOnly = true)
     @Override
-    public Visitor findByEmail(String email) {
-        List<Visitor> allVisitors = visitorRepository.findAll();
-
-        for (Visitor visitor: allVisitors) {
-            if(visitor.getVisitorEmail().equals(email)) {
-                return visitor;
-            }
-        }
-        return null;
-    }
-
-    @Transactional(readOnly = true)
-    @Override
     public Visitor getVisitor(int id) {
         return visitorRepository.findOne(id);
     }
