@@ -8,38 +8,38 @@ import java.util.List;
 @Table(name = "aruser")
 public class ArUser {
 
-    private int id;
-    private String userName;
-    private String name;
-    private List<ArUserObject> arUserObjects = new ArrayList<>();
-
-  // *** POJO ***
-    public ArUser() {}
-
-  // *** GETTERs/SETTERs ***
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @Column(name = "username")
+    private String userName;
+    @Column(name = "name")
+    private String name;
+    @Column(name = "useremail")
+    private String userEmail;
+    @OneToMany(mappedBy = "aruser", fetch = FetchType.LAZY)
+    private List<ArUserObject> arUserObjects = new ArrayList<>();
+
+  // *** GETTERs/SETTERs ***
     public int getId() { return id; }
 
     public void setId(int id) { this.id = id; }
 
-    @Column(name = "username")
     public String getUserName() { return userName; }
 
     public void setUserName(String userName) { this.userName = userName; }
 
-    @Column(name = "name")
     public String getName() { return name; }
 
     public void setName(String name) { this.name = name; }
 
-    @OneToMany(mappedBy = "aruser", fetch = FetchType.EAGER)
-    public List<ArUserObject> getArUserObjects() {
-        return arUserObjects;
-    }
+    public String getUserEmail() { return userEmail; }
 
-  // * * * * * * * * *
+    public void setUserEmail(String userEmail) { this.userEmail = userEmail; }
+
+    public List<ArUserObject> getArUserObjects() { return arUserObjects; }
+
+    // *** Equals & HashCode ***
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -56,12 +56,14 @@ public class ArUser {
     }
 
   // *** toString ***
+
     @Override
     public String toString() {
         return "ArUser{" +
                 "id=" + id +
                 ", userName='" + userName + '\'' +
                 ", name='" + name + '\'' +
+                ", userEmail=" + userEmail +
                 ", arUserObjects=" + arUserObjects +
                 '}';
     }

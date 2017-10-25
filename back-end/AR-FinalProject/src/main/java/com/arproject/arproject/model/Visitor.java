@@ -1,39 +1,34 @@
 package com.arproject.arproject.model;
 
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "visitor")
 public class Visitor {
 
-    private int id;
-    private String visitorName;
-    private String visitorEmail;
-    private String comments;
-
-  // *** POJO ***
-    public Visitor() {}
-
-  // *** GETTERs/SETTERs ***
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @Column(name = "visitorname")
+    private String visitorName;
+    @Column(name = "visitoremail")
+    private String visitorEmail;
+    @Column(name = "comments")
+    private String comments;
+
+  // *** GETTERs/SETTERs ***
     public int getId() { return id; }
 
     public void setId(int id) { this.id = id; }
 
-    @Column(name = "visitorname")
     public String getVisitorName() { return visitorName; }
 
     public void setVisitorName(String visitorName) { this.visitorName = visitorName; }
 
-    @Column(name = "visitoremail")
     public String getVisitorEmail() { return visitorEmail; }
 
     public void setVisitorEmail(String visitorEmail) { this.visitorEmail = visitorEmail; }
 
-    @Column(name = "comments")
     public String getComments() { return comments; }
 
     public void setComments(String comments) { this.comments = comments; }

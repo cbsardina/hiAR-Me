@@ -4,6 +4,7 @@ import com.arproject.arproject.model.Visitor;
 import com.arproject.arproject.service.VisitorService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -48,5 +49,14 @@ public class VisitorControllerApi {
             visitorService.deleteAll();
         }
         return "DATABASE DELETED";
+    }
+
+  // *** EXCEPTION HANDLER ***
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public String exceptionHandler(Exception e) {
+        System.out.println("\n\n### " + e);
+        e.printStackTrace();
+        return  e.getMessage();
     }
 }

@@ -1,62 +1,55 @@
 package com.arproject.arproject.model;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-import java.io.FileInputStream;
 
 @Entity
 @Table(name = "aruserobject")
 public class ArUserObject {
 
-    private int id;
-    private String objectName;
-    private String objectDescription;
-    private String fileName;
-    private FileInputStream arUserFile;
-    private ArUser arUser;
-
-  // *** POJO ***
-    public ArUserObject() {}
-
-  // *** GETTERs/SETTERs ***
-
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "aruser_id")
-    public ArUser getArUser() { return arUser; }
-
-    public void setArUser(ArUser arUser) { this.arUser = arUser; }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @Column(name = "objectname")
+    private String objectName;
+    @Column(name = "objectdescription")
+    private String objectDescription;
+    @Column(name = "filename")
+    private String fileName;
+    @Column(name = "filepath")
+    private String filePath;
+    @JsonIgnore
+    @ManyToOne()
+    @JoinColumn(name = "aruser_id")
+    private ArUser arUser;
+
+  // *** GETTERs/SETTERs ***
     public int getId() { return id; }
 
     public void setId(int id) { this.id = id; }
 
-    @Column(name = "objectname")
     public String getObjectName() { return objectName; }
 
     public void setObjectName(String objectName) { this.objectName = objectName; }
 
-    @Column(name = "objectdescription")
     public String getObjectDescription() { return objectDescription; }
 
     public void setObjectDescription(String objectDescription) { this.objectDescription = objectDescription; }
 
-    @Column(name = "filename")
     public String getFileName() { return fileName; }
 
     public void setFileName(String fileName) { this.fileName = fileName; }
 
-    @Column(name = "aruserfile")
-    public FileInputStream getArUserFile() { return arUserFile; }
 
-    public void setArUserFile(FileInputStream arUserFile) { this.arUserFile = arUserFile; }
+    public String getFilePath() { return filePath; }
 
-    // * * * * * * * * *
+    public void setFilePath(String filePath) { this.filePath = filePath; }
 
+    public ArUser getArUser() { return arUser; }
+
+    public void setArUser(ArUser arUser) { this.arUser = arUser; }
+
+  // *** equals & hashCode ***
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -72,16 +65,16 @@ public class ArUserObject {
         return id;
     }
 
-    // *** toString ***
-
+  // *** toString ***
     @Override
     public String toString() {
         return "ArUserObject{" +
                 "id=" + id +
-                ", fileName='" + fileName + '\'' +
+                ", objectName='" + objectName + '\'' +
                 ", objectDescription='" + objectDescription + '\'' +
-                ", arUserFile='" + arUserFile + '\'' +
-                ", arUser=" + arUser +
+                ", fileName='" + fileName + '\'' +
+                ", filePath='" + filePath + '\'' +
+                ", arUser=" + (arUser == null ? "": arUser.getId()) +
                 '}';
     }
 }

@@ -6,7 +6,7 @@ import com.arproject.arproject.model.ArUserObject;
 public interface ArUserService {
 
   // *** ArUser ***
-    ArUser findArUserById(int id);
+    ArUser getArUserById(int id);
     ArUser findByUserName(String userName);
     ArUser addArUser(ArUser arUser);
     ArUser updateArUser(ArUser arUser);
@@ -17,5 +17,5 @@ public interface ArUserService {
 
   // *** ArUserObject ***
     ArUser addNewObject(ArUserObject arUserObject);
-    ArUser deleteObject(int arUserId, int fileId);
+    ArUser deleteObject(int arUserId, int objectId);
 }

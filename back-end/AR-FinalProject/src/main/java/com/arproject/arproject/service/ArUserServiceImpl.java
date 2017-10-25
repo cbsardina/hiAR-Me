@@ -6,11 +6,12 @@ import com.arproject.arproject.repository.ArUserRepository;
 import com.arproject.arproject.repository.ArUserObjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class ArUserServiceImpl implements ArUserService {
 
     @Autowired
@@ -20,17 +21,22 @@ public class ArUserServiceImpl implements ArUserService {
     ArUserObjectRepository arUserObjectRepository;
 
 // ========== ArUser Methods ==========
-
-  // ----- Find user Methods -----
-    @Transactional
-    @Override
-    public ArUser findArUserById(int id) {
+    private ArUser getArUser(int id) {
         ArUser arUser = arUserRepository.findOne(id);
         arUser.getArUserObjects().size();
         return arUser;
     }
 
+
+//   ----- Find user Methods -----
     @Override
+    @Transactional(readOnly = true)
+    public ArUser getArUserById(int id) {
+        return getArUser(id);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public ArUser findByUserName(String userName) {
         List<ArUser> allArUsers = arUserRepository.findAll();
 
@@ -42,7 +48,7 @@ public class ArUserServiceImpl implements ArUserService {
         return null;
     }
 
-  // ----- Add and Update ArUser -----
+    // ----- Add and Update ArUser -----
     @Transactional
     @Override
     public ArUser addArUser(ArUser arUser) {
@@ -70,19 +76,21 @@ public class ArUserServiceImpl implements ArUserService {
 
 // ========== ArUserObject Methods ==========
 
-  // ----- User addNewObject
+//   ----- User addNewObject ---
+    @Transactional
     @Override
     public ArUser addNewObject(ArUserObject arUserObject) {
-            arUserObjectRepository.save(arUserObject);
+        arUserObject = arUserObjectRepository.save(arUserObject);
         ArUser arUser = arUserRepository.findOne(arUserObject.getArUser().getId());
             arUser.getArUserObjects().add(arUserObject);
             arUserRepository.save(arUser);
 
-        return findArUserById(arUserObject.getArUser().getId());
+        return getArUser(arUserObject.getArUser().getId());
 
     }
 
   // ----- User deleteObject -----
+    @Transactional
     @Override
     public ArUser deleteObject(int arUserId, int objectId) {
         ArUserObject arUserObject = arUserObjectRepository.findOne(objectId);
@@ -91,7 +99,7 @@ public class ArUserServiceImpl implements ArUserService {
             arUser.getArUserObjects().remove(arUserObject);
             arUserRepository.save(arUser);
 
-        return findArUserById(arUserId);
+        return getArUser(arUserId);
     }
 
 }

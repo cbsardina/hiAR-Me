@@ -5,6 +5,7 @@ import com.arproject.arproject.model.ArUserObject;
 import com.arproject.arproject.service.ArUserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -30,8 +31,8 @@ public class ArUserControllerApi {
     @PutMapping("/api/update_user/{userName}")
     public ArUser updateUser(@PathVariable("userName") String userName,@RequestBody String json) throws IOException {
         ArUser updatesToUser = objMap.readValue(json, ArUser.class);
-        ArUser existingUserData = arUserService.findByUserName(userName);
-        updatesToUser.setId(existingUserData.getId());
+        ArUser foundArUser = arUserService.findByUserName(userName);
+        updatesToUser.setId(foundArUser.getId());
 
         return arUserService.updateArUser(updatesToUser);
     }
@@ -66,6 +67,15 @@ public class ArUserControllerApi {
             arUserService.deleteAllArUsers();
         }
         return "DATABASE DELETED";
+    }
+
+    // *** EXCEPTION HANDLER ***
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public String exceptionHandler(Exception e) {
+        System.out.println("\n\n### " + e);
+        e.printStackTrace();
+        return  e.getMessage();
     }
 
 }
