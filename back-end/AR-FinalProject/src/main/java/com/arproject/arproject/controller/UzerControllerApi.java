@@ -2,12 +2,14 @@ package com.arproject.arproject.controller;
 
 import com.arproject.arproject.model.Uzer;
 import com.arproject.arproject.model.UzerItem;
+import com.arproject.arproject.security.HashSalt;
 import com.arproject.arproject.service.UzerService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.crypto.spec.SecretKeySpec;
 import java.io.IOException;
 
 @RestController
@@ -33,8 +35,11 @@ public class UzerControllerApi {
     Add User
  */
     @PostMapping("/api/user/add_user")
-    public Uzer addUzer(@RequestBody String json) throws IOException {
+    public Uzer addUzer(@RequestBody String json) throws Exception {
         Uzer newUzer = objMap.readValue(json, Uzer.class);
+        HashSalt hs = new HashSalt();
+        String encPass = hs.encrypt(newUzer.getUserPass());
+        newUzer.setUserPass(encPass);
         return uzerService.addUzer(newUzer);
     }
 /** * * * * * * * *

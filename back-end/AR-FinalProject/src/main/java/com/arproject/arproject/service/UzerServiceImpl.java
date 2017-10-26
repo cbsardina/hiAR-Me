@@ -31,9 +31,7 @@ public class UzerServiceImpl implements UzerService {
 
     @Transactional
     @Override
-    public Uzer addUzer(Uzer uzer) {
-        return uzerRepository.save(uzer);
-    }
+    public Uzer addUzer(Uzer uzer) { return uzerRepository.save(uzer); }
 
     @Transactional
     @Override

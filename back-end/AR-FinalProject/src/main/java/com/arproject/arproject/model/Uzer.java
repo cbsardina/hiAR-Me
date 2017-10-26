@@ -10,7 +10,7 @@ public class Uzer {
 
     private int id;
     private String userName;
-    private byte[] userPass;
+    private String userPass;
     private String fullName;
     private String userEmail;
     private List<UzerItem> uzerItems = new ArrayList<>();
@@ -30,9 +30,9 @@ public class Uzer {
     public void setUserName(String userName) { this.userName = userName; }
 
     @Column(name = "userpass")
-    public byte[] getUserPass() { return userPass; }
+    public String getUserPass() { return userPass; }
 
-    public void setUserPass(byte[] userPass) { this.userPass = userPass; }
+    public void setUserPass(String userPass) { this.userPass = userPass; }
 
     @Column(name = "fullname")
     public String getFullName() { return fullName; }
