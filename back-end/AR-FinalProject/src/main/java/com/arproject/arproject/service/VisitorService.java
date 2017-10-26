@@ -6,11 +6,12 @@ import java.util.List;
 
 public interface VisitorService {
 
+  // *** Visitor ***
     Visitor addVisitor(Visitor visitor);
     Visitor getVisitor(int id);
     List<Visitor> getAllVisitors();
 
-  // --- for development ---
+  // *** DeleteAll ***
     void deleteAll();
 
 }

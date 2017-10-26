@@ -14,8 +14,9 @@ public class UzerItem {
     private String filePath;
     private Uzer uzer;
 
-  // *** GETTERs/SETTERs ***
-
+/** * * * * * * * *
+     GETTERs/SETTERs
+ */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() { return id; }
@@ -49,7 +50,9 @@ public class UzerItem {
 
     public void setUzer(Uzer uzer) { this.uzer = uzer; }
 
-  // *** equals & hashCode ***
+/** * * * * * * * *
+     Equals & hashCode
+ */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -65,7 +68,9 @@ public class UzerItem {
         return id;
     }
 
-  // *** toString ***
+/** * * * * * * * *
+     toString
+ */
     @Override
     public String toString() {
         return "UzerItem{" +

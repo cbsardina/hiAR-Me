@@ -11,8 +11,9 @@ public class Visitor {
     private String visitorEmail;
     private String visitorComments;
 
-  // *** GETTERs/SETTERs ***
-
+/** * * * * * * * *
+     GETTERs/SETTERs
+ */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() { return id; }
@@ -29,12 +30,14 @@ public class Visitor {
 
     public void setVisitorEmail(String visitorEmail) { this.visitorEmail = visitorEmail; }
 
-    @Column(name = "visitorComments")
+    @Column(name = "visitorcomments")
     public String getVisitorComments() { return visitorComments; }
 
     public void setVisitorComments(String visitorComments) { this.visitorComments = visitorComments; }
 
-  // * * * * * * * * * * * * * * * * * *
+/** * * * * * * * *
+     Equals & hashCode
+ */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -50,8 +53,9 @@ public class Visitor {
         return id;
     }
 
-  // *** toString ***
-
+/** * * * * * * * *
+     toString
+ */
     @Override
     public String toString() {
         return "Visitor{" +

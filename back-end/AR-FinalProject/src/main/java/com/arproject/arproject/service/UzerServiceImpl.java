@@ -18,7 +18,10 @@ public class UzerServiceImpl implements UzerService {
     @Autowired
     UzerItemRepository uzerItemRepository;
 
-// ========== Uzer Methods ==========
+/** * * * * * * * *
+            *** USER METHODS ***
+ */
+    // --- private getUSER - pulls in Lazy fetch for items ---
     private Uzer getUSER(int id) {
         Uzer uzer = uzerRepository.findOne(id);
         uzer.getUzerItems().size();
@@ -47,6 +50,10 @@ public class UzerServiceImpl implements UzerService {
         uzerRepository.delete(id);
     }
 
+/** * * * * * * * *
+             *** ITEM METHODS ***
+ */
+
     @Override
     public Uzer addItem(UzerItem uzerItem) {
         uzerItemRepository.save(uzerItem);
@@ -64,5 +71,15 @@ public class UzerServiceImpl implements UzerService {
         uzer.getUzerItems().remove(uzerItem);
         uzerRepository.save(uzer);
         return uzer;
+    }
+
+/** * * * * * * * *
+            *** DELETE ALL FOR DEVELOPMENT ***
+ */
+
+    @Override
+    public void deleteAll() {
+        uzerItemRepository.deleteAll();
+        uzerRepository.deleteAll();
     }
 }

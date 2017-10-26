@@ -14,7 +14,9 @@ public class VisitorServiceImpl implements VisitorService {
     @Autowired
     VisitorRepository visitorRepository;
 
-  // *** Visitor Methods ***
+/** * * * * * * * *
+                 *** VISITOR METHODS ***
+ */
     @Transactional
     @Override
     public Visitor addVisitor(Visitor visitor) {
@@ -33,6 +35,9 @@ public class VisitorServiceImpl implements VisitorService {
         return visitorRepository.findAll();
     }
 
+/** * * * * * * * *
+                 *** DELETE ALL ***
+ */
     @Transactional
     @Override
     public void deleteAll() {

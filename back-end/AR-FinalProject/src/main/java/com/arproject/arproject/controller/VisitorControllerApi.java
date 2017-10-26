@@ -16,28 +16,37 @@ public class VisitorControllerApi {
     @Autowired
     VisitorService visitorService;
 
-  // --- JSON to Java Obj ---
+/** * * * * * * * *
+     JSON to Java Obj
+ */
     private ObjectMapper objMap = new ObjectMapper();
 
-  // *** ADD VISITOR ***
-    @PostMapping("/api/add_visitor")
+/** * * * * * * * *
+     Add Visitor
+ */
+    @PostMapping("/api/visitor/add_visitor")
     public Visitor addNewVisitor(@RequestBody String json) throws IOException {
         Visitor addVisitor = objMap.readValue(json, Visitor.class);
         return visitorService.addVisitor(addVisitor); }
 
-  // *** GET VISITOR ***
-    // --- BY USER ID ---
-    @GetMapping("/api/get_one_visitor/{visitorId}")
+/** * * * * * * * *
+     Get Visitor
+ */
+    @GetMapping("/api/visitor/{visitorId}")
     public Visitor getOneVisitor(@PathVariable(name = "visitorId") int id) {
         return visitorService.getVisitor(id); }
 
-  // *** GET ALL VISITORS ***
-    @GetMapping("/api/get_all_visitors")
+/** * * * * * * * *
+     Get All Visitors
+ */
+    @GetMapping("/api/visitor/get_all")
     public List<Visitor> getAllVisitors() {
         return visitorService.getAllVisitors();
     }
 
-  // *** DELETE ALL VISITORS - dev only ***
+/** * * * * * * * *
+                *** DELETE ALL ***
+ */
     @DeleteMapping("/api/delete_all_visitors/{deleteCode}")
     public String deleteAllUsers(@PathVariable("deleteCode") Integer deleteCode) {
         if (deleteCode.equals(11022017)) {
@@ -46,7 +55,9 @@ public class VisitorControllerApi {
         return "DATABASE DELETED";
     }
 
-  // *** EXCEPTION HANDLER ***
+/** * * * * * * * *
+     Exception Handling
+ */
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public String exceptionHandler(Exception e) {

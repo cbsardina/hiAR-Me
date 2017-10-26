@@ -14,8 +14,9 @@ public class Uzer {
     private String userEmail;
     private List<UzerItem> uzerItems = new ArrayList<>();
 
-  // *** GETTERs/SETTERs ***
-
+/** * * * * * * * *
+    GETTERs/SETTERs
+ */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() { return id; }
@@ -40,7 +41,11 @@ public class Uzer {
     @OneToMany(mappedBy = "uzer", fetch = FetchType.LAZY)
     public List<UzerItem> getUzerItems() { return uzerItems; }
 
-    // *** Equals & HashCode ***
+    public void setUzerItems(List<UzerItem> uzerItems) { this.uzerItems = uzerItems; }
+
+    /** * * * * * * * *
+    Equals & hashCode
+ */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -56,8 +61,9 @@ public class Uzer {
         return id;
     }
 
-  // *** toString ***
-
+/** * * * * * * * *
+    toString
+ */
     @Override
     public String toString() {
         return "Uzer{" +
