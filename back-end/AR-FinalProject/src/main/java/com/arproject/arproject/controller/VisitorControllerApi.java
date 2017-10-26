@@ -26,14 +26,16 @@ public class VisitorControllerApi {
  */
     @PostMapping("/api/visitor/add_visitor")
     public Visitor addNewVisitor(@RequestBody String json) throws IOException {
-        Visitor addVisitor = objMap.readValue(json, Visitor.class);
-        return visitorService.addVisitor(addVisitor); }
+        Visitor visitor = objMap.readValue(json, Visitor.class);
+        return visitorService.addVisitor(visitor);
+    }
+
 
 /** * * * * * * * *
      Get Visitor
  */
-    @GetMapping("/api/visitor/{visitorId}")
-    public Visitor getOneVisitor(@PathVariable(name = "visitorId") int id) {
+    @GetMapping("/api/visitor/{id}")
+    public Visitor getOneVisitor(@PathVariable(name = "id") int id) {
         return visitorService.getVisitor(id); }
 
 /** * * * * * * * *

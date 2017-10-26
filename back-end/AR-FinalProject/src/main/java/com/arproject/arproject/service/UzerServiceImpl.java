@@ -33,16 +33,19 @@ public class UzerServiceImpl implements UzerService {
         return uzerRepository.findOne(id);
     }
 
+    @Transactional
     @Override
     public Uzer addUzer(Uzer uzer) {
         return uzerRepository.save(uzer);
     }
 
+    @Transactional
     @Override
     public Uzer updateUzer(Uzer uzer) {
         return uzerRepository.save(uzer);
     }
 
+    @Transactional
     @Override
     public void deleteUzer(int id) {
         Uzer uzer = this.getUSER(id);
@@ -53,7 +56,7 @@ public class UzerServiceImpl implements UzerService {
 /** * * * * * * * *
              *** ITEM METHODS ***
  */
-
+    @Transactional
     @Override
     public Uzer addItem(UzerItem uzerItem) {
         uzerItemRepository.save(uzerItem);
@@ -63,6 +66,7 @@ public class UzerServiceImpl implements UzerService {
         return getUSER(uzerItem.getUzer().getId());
     }
 
+    @Transactional
     @Override
     public Uzer deleteItem(int uzerId, int itemId) {
         UzerItem uzerItem = uzerItemRepository.findOne(itemId);
@@ -76,7 +80,7 @@ public class UzerServiceImpl implements UzerService {
 /** * * * * * * * *
             *** DELETE ALL FOR DEVELOPMENT ***
  */
-
+    @Transactional
     @Override
     public void deleteAll() {
         uzerItemRepository.deleteAll();
