@@ -1,20 +1,26 @@
-Complete ArUser object:
 
+    * * * Uzer Object * * *
 {
-	"id":null;
-	"userName": null;
-	"fullName": null;
-	"resume": null;
-	"github": null;
-	"portfolio": null;
-	"image": null;
-	"arUserObjects":[
-		{
-			"id": null;
-			"fileName": null;
-			"itemDescription": null;
-			"uzerItem": null;
-			"uzer": null;
-		}
-	]
+	"id":null,
+	"userName": null,
+	"fullName": null,
+	"userEmail": null
+}
+
+    * * * Item Object (joined to Uzer) * * *
+{
+ 	"id":null,
+ 	"itemName": null,
+ 	"itemDescription": null,
+ 	"fileName": null,
+ 	"filePath": null
+ }
+
+
+    * * * Visitor Object * * *
+{
+	"id":null,
+	"visitorName": null,
+	"visitorEmail": null,
+	"visitorComments": null
 }

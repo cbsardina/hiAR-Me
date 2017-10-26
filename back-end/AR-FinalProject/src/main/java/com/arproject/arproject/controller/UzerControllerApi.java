@@ -51,7 +51,7 @@ public class UzerControllerApi {
     Delete User
  */
     @DeleteMapping("/api/user/{userId}")
-    public String deleteOneUser(@PathVariable("userId") int userId) {
+    public String deleteOneUser(@PathVariable("userId") int userId) throws IOException {
         Uzer uzer = uzerService.getUzerById(userId);
         uzerService.deleteUzer(userId);
         return "User: " + uzer.getUserName() + " deleted.";
@@ -61,17 +61,19 @@ public class UzerControllerApi {
     Add User Item
  */
     @PostMapping("/api/user/{userId}/add_item")
-    public Uzer addItem(@PathVariable("userId") int userId, @RequestBody String json) throws IOException {
+    public UzerItem addItem(@PathVariable("userId") int userId, @RequestBody String json) throws IOException {
         UzerItem uzerItem = objMap.readValue(json, UzerItem.class);
         Uzer uzer = uzerService.getUzerById(userId);
             uzerItem.setUzer(uzer);
-        return uzerService.addItem(uzerItem);
+        uzerService.addItem(uzerItem);
+
+        return uzerItem;
     }
 
 /** * * * * * * * *
     Delete User Item
  */
-    @PostMapping("/api/user/{userId}/item/{itemId}/delete_item")
+    @DeleteMapping("/api/user/{userId}/item/{itemId}/delete_item")
     public String deleteItem(@PathVariable("userId") int userId, @PathVariable("itemId") int itemId) {
             uzerService.deleteItem(userId, itemId);
         return "Item Deleted";
