@@ -30,7 +30,6 @@ public class VisitorControllerApi {
         return visitorService.addVisitor(visitor);
     }
 
-
 /** * * * * * * * *
      Get Visitor
  */
