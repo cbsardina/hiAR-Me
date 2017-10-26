@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 @Service
 @Transactional
 public class UzerServiceImpl implements UzerService {
@@ -21,13 +24,6 @@ public class UzerServiceImpl implements UzerService {
 /** * * * * * * * *
             *** USER METHODS ***
  */
-    // --- private getUSER - pulls in Lazy fetch for items ---
-    private Uzer getUSER(int id) {
-        Uzer uzer = uzerRepository.findOne(id);
-        uzer.getUzerItems().size();
-        return uzer;
-    }
-
     @Override
     public Uzer getUzerById(int id) {
         return uzerRepository.findOne(id);
@@ -85,5 +81,22 @@ public class UzerServiceImpl implements UzerService {
     public void deleteAll() {
         uzerItemRepository.deleteAll();
         uzerRepository.deleteAll();
+    }
+
+/** * * * * * * * *
+            *** PRIVATE METHODS ***
+     */
+    // --- private getUSER - pulls in Lazy fetch for items ---
+    private Uzer getUSER(int id) {
+        Uzer uzer = uzerRepository.findOne(id);
+        uzer.getUzerItems().size();
+        return uzer;
+    }
+
+    // --- hash user password ---
+    private byte[] makeDigest(String value, byte[] salt) throws NoSuchAlgorithmException {
+        MessageDigest msgDgst = MessageDigest.getInstance("SHA-256");
+        msgDgst.update(salt);
+        return msgDgst.digest(value.getBytes());
     }
 }

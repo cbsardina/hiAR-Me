@@ -10,6 +10,7 @@ public class Uzer {
 
     private int id;
     private String userName;
+    private byte[] userPass;
     private String fullName;
     private String userEmail;
     private List<UzerItem> uzerItems = new ArrayList<>();
@@ -27,6 +28,11 @@ public class Uzer {
     public String getUserName() { return userName; }
 
     public void setUserName(String userName) { this.userName = userName; }
+
+    @Column(name = "userpass")
+    public byte[] getUserPass() { return userPass; }
+
+    public void setUserPass(byte[] userPass) { this.userPass = userPass; }
 
     @Column(name = "fullname")
     public String getFullName() { return fullName; }
@@ -69,8 +75,9 @@ public class Uzer {
         return "Uzer{" +
                 "id=" + id +
                 ", userName='" + userName + '\'' +
+                ", userPass='" + userPass + '\'' +
                 ", fullName='" + fullName + '\'' +
-                ", userEmail=" + userEmail +
+                ", userEmail='" + userEmail + '\'' +
                 ", uzerItems=" + uzerItems +
                 '}';
     }
