@@ -23,6 +23,8 @@ public class UzerControllerApi {
  */
     private ObjectMapper objMap = new ObjectMapper();
 
+    //TODO: CONVERT ALL TRANSACTIONAL ROUTES TO UzerController UNTIL/IF FRONT END DEVELOPES A SIGNIN SIGNUP INTERFACE
+
 /** * * * * * * * *
     Get User
  */
@@ -56,7 +58,7 @@ public class UzerControllerApi {
     public String deleteOneUser(@PathVariable("userId") int userId) throws IOException {
         Uzer uzer = uzerService.getUzerById(userId);
         uzerService.deleteUzer(userId);
-        return "User: " + uzer.getUserName() + " deleted.";
+        return "User: " + uzer.getUserEmail() + " deleted.";
     }
 
 /** * * * * * * * *

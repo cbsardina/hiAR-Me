@@ -22,9 +22,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 //          @formatter: off
+                        //TODO: MAKE SURE ALL ROUTES ARE CORRECTED WITH && ACCOUNTING FOR ONLY SPECIFIC USER ID
             http
                 .authorizeRequests()
-                    .antMatchers("/", "/login", "SignUp").permitAll()
+                    .antMatchers("/", "/Login", "/SignUp").permitAll()
                     .antMatchers("/admin").hasRole("ADMIN")
                     .antMatchers("/user").hasRole("USER")
                     .anyRequest().authenticated()
@@ -43,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
             auth
                 .jdbcAuthentication().dataSource(this.dataSource)
-                .usersByUsernameQuery("SELECT username, password, enabled FROM users WHERE username = ?")
-                .authoritiesByUsernameQuery("SELECT username, authority FROM authorities WHERE username = ?");
+                .usersByUsernameQuery("SELECT useremail, userpass, userenabled FROM uzer WHERE useremail = ?")
+                .authoritiesByUsernameQuery("SELECT useremail, userauth FROM uzer WHERE useremail = ?");
     }
 }
