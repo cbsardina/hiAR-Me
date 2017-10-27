@@ -4,7 +4,7 @@
 	"id":null,
 	"userName": null,
 	"userPass": null,
-	"fullName": null,
+	"firstLastName": null,
 	"userEmail": null
 }
 

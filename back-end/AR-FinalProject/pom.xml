@@ -8,7 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<fullName>Final Project AR</fullName>
+	<firstLastName>Final Project AR</firstLastName>
 	<description>Final project demo day AR</description>
 
 	<parent>

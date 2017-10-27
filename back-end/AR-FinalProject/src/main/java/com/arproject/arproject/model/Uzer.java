@@ -9,11 +9,12 @@ import java.util.List;
 public class Uzer {
 
     private int id;
-    private String userName;
-    private String userPass;
-    private String fullName;
     private String userEmail;
-    private List<UzerItem> uzerItems = new ArrayList<>();
+    private String userPass;
+    private Boolean userEnabled;
+    private UzerAuth userAuth;
+    private String firstLastName;
+    private List<UzerItem> userItems = new ArrayList<>();
 
 /** * * * * * * * *
     GETTERs/SETTERs
@@ -24,30 +25,35 @@ public class Uzer {
 
     public void setId(int id) { this.id = id; }
 
-    @Column(name = "username")
-    public String getUserName() { return userName; }
+    @Column(name = "useremail")
+    public String getUserEmail() { return userEmail; }
 
-    public void setUserName(String userName) { this.userName = userName; }
+    public void setUserEmail(String userEmail) { this.userEmail = userEmail; }
 
     @Column(name = "userpass")
     public String getUserPass() { return userPass; }
 
     public void setUserPass(String userPass) { this.userPass = userPass; }
 
-    @Column(name = "fullname")
-    public String getFullName() { return fullName; }
+    @Column(name = "userenabled")
+    public Boolean getUserEnabled() { return userEnabled; }
 
-    public void setFullName(String fullName) { this.fullName = fullName; }
+    public void setUserEnabled(Boolean userEnabled) { this.userEnabled = userEnabled; }
 
-    @Column(name = "useremail")
-    public String getUserEmail() { return userEmail; }
+    @Column(name = "userauth")
+    public UzerAuth getUserAuth() { return userAuth; }
 
-    public void setUserEmail(String userEmail) { this.userEmail = userEmail; }
+    public void setUserAuth(UzerAuth userAuth) { this.userAuth = userAuth; }
+
+    @Column(name = "firstlastname")
+    public String getFirstLastName() { return firstLastName; }
+
+    public void setFirstLastName(String firstLastName) { this.firstLastName = firstLastName; }
 
     @OneToMany(mappedBy = "uzer", fetch = FetchType.LAZY)
-    public List<UzerItem> getUzerItems() { return uzerItems; }
+    public List<UzerItem> getUserItems() { return userItems; }
 
-    public void setUzerItems(List<UzerItem> uzerItems) { this.uzerItems = uzerItems; }
+    public void setUserItems(List<UzerItem> userItems) { this.userItems = userItems; }
 
     /** * * * * * * * *
     Equals & hashCode
@@ -74,11 +80,12 @@ public class Uzer {
     public String toString() {
         return "Uzer{" +
                 "id=" + id +
-                ", userName='" + userName + '\'' +
-                ", userPass='" + userPass + '\'' +
-                ", fullName='" + fullName + '\'' +
                 ", userEmail='" + userEmail + '\'' +
-                ", uzerItems=" + uzerItems +
+                ", userPass='" + userPass + '\'' +
+                ", userEnabled=" + userEnabled +
+                ", userAuth=" + userAuth +
+                ", firstLastName='" + firstLastName + '\'' +
+                ", userItems=" + userItems +
                 '}';
     }
 }
