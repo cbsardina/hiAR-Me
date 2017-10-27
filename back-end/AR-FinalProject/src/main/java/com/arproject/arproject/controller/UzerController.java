@@ -42,6 +42,7 @@ public class UzerController {
                 newUzer.setFirstLastName(firstLastName);
             newUzer = uzerService.addUzer(newUzer);
             int userId = newUzer.getId();
+
             return "userInfo/" + userId;
     }
 
@@ -64,6 +65,10 @@ public class UzerController {
             model.addAttribute("uzer", uzer);
         return "updateInfo";
     }
+
+    @PostMapping("/updateUserInfo/{userId}")
+
+
 
     //TODO: ADD UPDATE/ADD ITEMS ROUTES
 

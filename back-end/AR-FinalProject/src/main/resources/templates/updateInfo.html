@@ -11,24 +11,20 @@
 
 
     <!--PARTIAL FORM FOR UPDATE-->
-    <!--<div class="addUser">-->
-        <!--<form fullName="addForm" action="/create_user" method="POST">-->
-            <!--<input type="text" fullName="userName" placeholder="Your Name"/>-->
-            <!--<input type="text" fullName="userName" placeholder="username"/>-->
-            <!--<input type="email" fullName="email" placeholder="email@email.com"/>-->
-            <!--<form action="upload" method="POST" enctype="multipart/form-data">-->
-                <!--<input type="text" fullName="itemName" placeholder="Name of item or file"/>-->
-                <!--<input type="text" fullName="itemDescription" placeholder="Description of item or file"/>-->
-                <!--<input type="text" fullName="fileName" placeholder="File fullName (if uploading a file)"/>-->
-                <!--<input type="file" fullName="arUserFile"/>-->
-                <!--<button type="submit">Upload</button>-->
-            <!--</form>-->
-            <!--<button type="submit">Add</button>-->
-            <!--<tr>-->
-                <!--<h3>Already have an account? <a href="login.html">Login</a></h3>-->
-            <!--</tr>-->
-        <!--</form>-->
-    <!--</div>-->
+    <div class="updateUser">
+        <form name="addForm" th:action="'/updateUserInfo/' + ${uzer.getId()}" enctype="multipart/form-data" method="POST">
+            <input type="text" name="firstLastName" placeholder="Your Name" required/>
+            <input type="text" name="userEmail" placeholder="YourEmail@email.com" required/>
+            <input type="text" name="itemName" placeholder="Name of item or file"/>
+            <input type="text" name="itemDescription" placeholder="Description of item or file"/>
+            <input type="text" name="fileName" placeholder="File fullName (if uploading a file)"/>
+            <input type="file" name="userFile"/>
+            <button type="submit">Update/Add</button>
+            <tr>
+                <h3>Already have an account? <a href="login.html">Login</a></h3>
+            </tr>
+        </form>
+    </div>
 
 
 
