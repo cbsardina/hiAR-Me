@@ -35,11 +35,8 @@ public class UzerControllerApi {
     Add User
  */
     @PostMapping("/api/user/add_user")
-    public Uzer addUzer(@RequestBody String json) throws Exception {
+    public Uzer addUzer(@RequestBody String json) throws IOException {
         Uzer newUzer = objMap.readValue(json, Uzer.class);
-        HashSalt hs = new HashSalt();
-        String encPass = hs.encrypt(newUzer.getUserPass());
-        newUzer.setUserPass(encPass);
         return uzerService.addUzer(newUzer);
     }
 /** * * * * * * * *

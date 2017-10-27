@@ -4,6 +4,7 @@ import com.arproject.arproject.model.Uzer;
 import com.arproject.arproject.model.UzerItem;
 import com.arproject.arproject.repository.UzerRepository;
 import com.arproject.arproject.repository.UzerItemRepository;
+import com.arproject.arproject.security.HashSalt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +33,10 @@ public class UzerServiceImpl implements UzerService {
     @Transactional
     @Override
     public Uzer addUzer(Uzer uzer) { return uzerRepository.save(uzer); }
+
+//    HashSalt hs = new HashSalt();
+//    String encPass = hs.encrypt(newUzer.getUserPass());
+//        newUzer.setUserPass(encPass);
 
     @Transactional
     @Override

@@ -3,6 +3,7 @@
 {
 	"id":null,
 	"userName": null,
+	"userPass": null,
 	"fullName": null,
 	"userEmail": null
 }

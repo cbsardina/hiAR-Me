@@ -24,12 +24,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //          @formatter: off
             http
                 .authorizeRequests()
-                    .antMatchers("/", "/login").permitAll()
+                    .antMatchers("/", "/login", "SignUp").permitAll()
                     .antMatchers("/admin").hasRole("ADMIN")
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()
-                    .loginPage("/login")
+                    .loginPage("/Login")
                     .permitAll()
                     .and()
                 .logout()
