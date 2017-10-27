@@ -23,11 +23,11 @@
 
 
 <div class="addUser">
-    <form firstLastName="addForm" action="/create_user" method="POST">
+    <form firstLastName="addForm" action="/SignUp" method="POST">
         <input type="text" name="firstLastName" placeholder="Your Name"/>
-        <input type="text" name="userName" placeholder="username"/>
-        <input type="email" name="email" placeholder="email@email.com"/>
-
+        <input type="text" name="userEmail" placeholder="YourEmail@email.com"/>
+        <input type="password" name="userPass" placeholder="Password"/>
+        <input type="password" name="passCompare" placeholder="Re-Enter Your Password">
         <button type="submit">Add</button>
         <tr>
             <h3>Already have an account? <a href="login.html">Login</a></h3>
@@ -36,4 +36,5 @@
 </div>
 
 </body>
+<script th:src="@{/js/scripts.js}"></script>
 </html>

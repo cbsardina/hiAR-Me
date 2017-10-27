@@ -2,10 +2,11 @@
     * * * Uzer Object * * *
 {
 	"id":null,
-	"userName": null,
+	"userEmail": null,
 	"userPass": null,
-	"firstLastName": null,
-	"userEmail": null
+	"userEnabled": null,
+	"userAuth": null,
+	"firstLastName": null
 }
 
     * * * Item Object (joined to Uzer) * * *
@@ -25,3 +26,4 @@
 	"visitorEmail": null,
 	"visitorComments": null
 }
+
