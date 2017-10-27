@@ -40,10 +40,30 @@ public class UzerController {
                 newUzer.setUserEnabled(true);
                 newUzer.setUserAuth(UzerAuth.ROLE_USER);
                 newUzer.setFirstLastName(firstLastName);
-                    uzerService.addUzer(newUzer);
-            return "userInfo";
+            newUzer = uzerService.addUzer(newUzer);
+            int userId = newUzer.getId();
+            return "userInfo/" + userId;
     }
 
+/** * * * * * * * *
+     User Info View (not editable)
+ */
+    @GetMapping("/userInfo/{userId}")
+    public String getUzerInfoPage(@PathVariable("userId") int userId, Model model) {
+        Uzer uzer = uzerService.getUzerById(userId);
+            model.addAttribute("uzer", uzer);
+        return "userInfo";
+    }
+
+/** * * * * * * * *
+     Update User/Add Items
+ */
+    @GetMapping("/updateUserInfo/{userId}")
+    public String getUserInfoUpdate(@PathVariable("userId") int userId, Model model) {
+        Uzer uzer = uzerService.getUzerById(userId);
+            model.addAttribute("uzer", uzer);
+        return "updateInfo";
+    }
 
     //TODO: ADD UPDATE/ADD ITEMS ROUTES
 
