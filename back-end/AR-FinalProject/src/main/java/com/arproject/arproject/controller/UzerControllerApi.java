@@ -82,11 +82,21 @@ public class UzerControllerApi {
 /** * * * * * * * *
      DeleteAll Users & Items for dev only
  */
-    @DeleteMapping("/api/delete_all/{deleteCode}")
+
+    @DeleteMapping("/api/delete_all_items/{deleteCode}")
+    public String deleteAllItems(@PathVariable("deleteCode") Integer deleteCode) {
+        if (deleteCode.equals(64829504)) {
+            uzerService.deleteAllItems();
+            return "ITEMS DATABASE DELETED";
+        }
+            return "Incorrect delete code";
+    }
+
+    @DeleteMapping("/api/delete_all_users/{deleteCode}")
     public String deleteAllUsers(@PathVariable("deleteCode") Integer deleteCode) {
         if (deleteCode.equals(11022017)) {
-            uzerService.deleteAll();
-            return "DATABASE DELETED";
+            uzerService.deleteAllUsers();
+            return "USERS DATABASE DELETED";
         }
         return "Incorrect delete code";
     }

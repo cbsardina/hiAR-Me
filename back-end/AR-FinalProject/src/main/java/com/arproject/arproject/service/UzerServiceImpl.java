@@ -77,13 +77,18 @@ public class UzerServiceImpl implements UzerService {
         return uzer;
     }
 
-/** * * * * * * * *
+    /** * * * * * * * *
             *** DELETE ALL FOR DEVELOPMENT ***
  */
     @Transactional
     @Override
-    public void deleteAll() {
+    public void deleteAllItems() {
         uzerItemRepository.deleteAll();
+    }
+
+    @Transactional
+    @Override
+    public void deleteAllUsers() {
         uzerRepository.deleteAll();
     }
 }

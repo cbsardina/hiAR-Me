@@ -16,7 +16,8 @@ public interface UzerService {
     Uzer deleteItem(int uzerId, int itemId);
 
   // *** DeleteAll ***
-    void deleteAll();
+    void deleteAllItems();
+    void deleteAllUsers();
 
 
 }
