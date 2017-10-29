@@ -4,27 +4,30 @@
 <head>
     <meta charset="UTF-8" />
     <title>Update User Info</title>
-    <link rel="stylesheet" href="./styles.css"/>
+    <link rel="stylesheet" href="static/styles.css"/>
 </head>
 <body>
     <h1>UPDATE USER INFO PAGE</h1>
 
-
-    <!--PARTIAL FORM FOR UPDATE-->
     <div class="updateUser">
         <form name="addForm" th:action="'/updateUserInfo/' + ${uzer.getId()}" enctype="multipart/form-data" method="POST">
             <input type="text" name="firstLastName" placeholder="Your Name" required/>
             <input type="text" name="userEmail" placeholder="YourEmail@email.com" required/>
             <input type="text" name="itemName" placeholder="Name of item or file"/>
             <input type="text" name="itemDescription" placeholder="Description of item or file"/>
-            <input type="text" name="fileName" placeholder="File fullName (if uploading a file)"/>
-            <input type="file" name="userFile"/>
+            <div>
+                <label for="image_uploads">Choose files to upload</label>
+                <input type="file" id="image_uploads" name="image_uploads" multiple/>
+            </div>
+            <div class="preview">
+                <p>No files currently selected for upload</p>
+            </div>
             <button type="submit">Update/Add</button>
-            <tr>
-                <h3>Already have an account? <a href="login.html">Login</a></h3>
-            </tr>
         </form>
+        <h2 style="text-align: center">Already have an account? <a href="login.html">Login</a></h2>
     </div>
 
 </body>
+
+<script th:src="@{js/scripts.js}"></script>
 </html>

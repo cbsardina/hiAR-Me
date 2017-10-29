@@ -16,62 +16,34 @@ passCompare.onkeyup = comparePasswords();
 /** * * * * * * * * * *
         * * * Update/Add User Info * * *
  */
+const input = document.querySelector('input');
+const preview = document.querySelector('.preview');
 
-const fileInput = document.getElementsByName("userFile");
-const preview = document.getElementsByClassName(".preview");
+input.style.opacity = 0;
+input.addEventListener('update', updateImageDisplay);
 
-fileInput.style.visibility = "hidden";
-fileInput.addEventListener("update", showFilesToUpload);
-
-    function showFilesToUpload() {
-        while(preview.firstChild) {
-            preview.removeChild(preview.firstChild);
-        }
-
-const currentFiles = input.files;
-
-    if(currentFiles.length === 0) {
-        const para = document.createElement('p');
-        para.textContent = "No files have been selected for upload";
-        preview.appendChild(para);
+function updateImageDisplay() {
+    while (preview.firstChild) {
+        preview.removeChild(preview.firstChild);
     }
-    else {
+    let curFiles = input.files;
+    if (curFiles.length === 0) {
+        const para = document.createElement('p');
+        para.textContent = 'No files currently selected for upload';
+        preview.appendChild(para);
+    } else {
         const list = document.createElement('ol');
         preview.appendChild(list);
-        for(i = 0; i < currentFiles.length; i++) {
-            const listItem = document.createElement("li");
-            const para = document.createElement("p");
-            if(validFileType(currentFiles[i])) {
-                para.textContent = "File name " + currentFiles[i].name + ".";
-                const image = document.createElement("img");
-                image.src = window.URL.createEventObject(currentFiles[i]); // createEventObject may be inc -> createObjectURL
 
-                listItem.appendChild(image);
-                listItem.appendChild(para);
-            }
-            else {
-                para.textContent = "File Name " + currentFiles[i].name + ": not a valid file type."
-                listItem.appendChild(para);
-            }
-            list.appendChild(listItem);
-        }
+        curFiles.forEach((file) => {
+            let listItem = document.createElement('li');
+            let para = document.createElement('p');
+            para.textContent = 'File name: ' + curFiles[i].name;
+            let image = document.createElement('img');
+            image.src = window.URL.createObjectURL(curFiles[i]);
+
+            listItem.appendChild(image);
+            listItem.appendChild(para);
+        })
     }
-
-    const fileTypes = ["iage/jpeg", "image/pjpeg", "image/png"];
-
-    function validFileType(file) {
-        for(var i = 0; i < fileTypes.length; i++) {
-            if(file.type.equals(fileTypes[i])) {
-                return true;
-            }
-            return false;
-        }
-
-
-        //TODO: PICK UP HERE
-    }
-
-
-
-
 }
