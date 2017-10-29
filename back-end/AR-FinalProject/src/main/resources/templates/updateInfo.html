@@ -21,15 +21,6 @@
         <form name="addForm" th:action="'/updateUserInfo/' + ${uzer.getId()}" enctype="multipart/form-data" method="POST">
             <input type="text" name="firstLastName" placeholder="Your Name" required/>
             <input type="text" name="userEmail" placeholder="YourEmail@email.com" required/>
-            <input type="text" name="itemName" placeholder="Name of item or file"/>
-            <input type="text" name="itemDescription" placeholder="Description of item or file"/>
-            <div>
-                <label for="image_uploads">Choose files to upload</label>
-                <input type="file" id="image_uploads" name="image_uploads" multiple/>
-            </div>
-            <div class="preview">
-                <p>No files currently selected for upload</p>
-            </div>
             <button type="submit">Update/Add</button>
         </form>
         <h2 style="text-align: center">Already have an account? <a href="login.html">Login</a></h2>

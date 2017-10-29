@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
 import java.io.IOException;
 
 @Controller
@@ -62,7 +63,7 @@ public class UzerController {
     }
 
 /** * * * * * * * *
-     Update User/Add Items
+     Update User Update/Add Items
  */
     @GetMapping("/updateUserInfo/{userId}")
     public String getUserInfoUpdate(@PathVariable("userId") int userId, Model model) {
@@ -72,10 +73,37 @@ public class UzerController {
     }
 
     @PostMapping("/updateUserInfo/{userId}")
+    public String updateUserInfo(@PathVariable("userId") int userId,
+                                 @RequestParam("firstLastName") String firstLastName,
+                                 @RequestParam("userEmail") String userEmail,
+                                 @RequestParam("itemName") String itemName,
+                                 @RequestParam("itemDescription") String itemDescription,
+                                 @RequestParam("fileUpload") File[] fileUpload) {
+        Uzer uzer = uzerService.getUzerById(userId);
+            uzer.setFirstLastName(firstLastName);
+            uzer.setUserEmail(userEmail);
+                uzerService.updateUzer(uzer);
+        return "redirect:/userInfo/" + userId;
+    }
 
+    @GetMapping("/updateUserItems/{userId}")
+    public String getUserItemsUpdate(@PathVariable("userId") int userId, Model model) {
+        Uzer uzer = uzerService.getUzerById(userId);
+        //TODO: have to add iteration of all items per user
+            model.addAttribute("uzer", uzer);
+        return "updateItems";
+    }
 
+    @PostMapping("/updateUserInfo/{userId}")
+    public String updateUserItems(@PathVariable("userId") int userId,
+                                 @RequestParam("itemName") String itemName,
+                                 @RequestParam("itemDescription") String itemDescription,
+                                 @RequestParam("fileUpload") File[] fileUpload) {
+        //TODO: FTP and setFileName for each item.
 
-    //TODO: ADD UPDATE/ADD ITEMS ROUTES
+        return "redirect:/userInfo/" + userId;
+    }
+
 
 /** * * * * * * * *
      Exception Handling

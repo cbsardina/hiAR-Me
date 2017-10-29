@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8" />
+    <title>Update User Items/Files</title>
+    <link rel="stylesheet" th:href="@{static/styles.css}"/>
+</head>
+<body>
+<h1>UPDATE USER ITEMS/FILES PAGE</h1>
+
+<div style="display: flex; flex-direction: row; justify-content: space-around">
+    <div sec:authorize="isAuthenticated()">
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </div>
+</div>
+
+<div class="updateItems">
+    <form name="addForm" th:action="'/updateUserItems/' + ${uzer.getId()}" enctype="multipart/form-data" method="POST">
+        <input type="text" name="itemName" placeholder="Name of item or file"/>
+        <input type="text" name="itemDescription" placeholder="Description of item or file"/>
+        <div>
+            <label for="fileUpload">Choose files to upload</label>
+            <input type="file" id="fileUpload" name="fileUpload" multiple/>
+        </div>
+        <div class="preview">
+            <p>No files currently selected for upload</p>
+        </div>
+        <button type="submit">Update/Add</button>
+    </form>
+    <h2 style="text-align: center">Already have an account? <a href="login.html">Login</a></h2>
+</div>
+
+</body>
+
+<script th:src="@{js/scripts.js}"></script>
+</html>
