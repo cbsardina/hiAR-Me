@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <title>User Info</title>
-    <link rel="stylesheet" href="static/styles.css"/>
+    <link rel="stylesheet" th:href="@{static/styles.css}"/>
 </head>
 <body>
 
@@ -22,16 +22,15 @@
 
 <br/>
 
-<div style="display: flex; flex-direction: column" class="userProfile">
-    <p style="display: flex; justify-content: center">
-        <span style="font-size: 1.5em" th:text="'Name: ' + ${uzer.firstLastName}"></span>
-        <span style="font-size: 1.5em" th:text="' | Username: ' + ${uzer.userName} + ', ' + ${uzer.userPass}"></span>
-    </p>
-    <p style="display: flex; justify-content: center">
-        <span style="font-size: 1.5em" th:text="'   Email: ' + ${uzer.userEmail} + ' | '"></span>
-        <span style="font-size: 1.5em" th:text="' Items: ' + ${uzer.userItems}"></span>
-    </p>
+<div class="userProfile">
+    <p style="font-size: 1.5em" th:text="'Name: ' + ${uzer.firstLastName}"></p>
+    <p style="font-size: 1.5em" th:text="'Email/Username: ' + ${uzer.userEmail}"></p>
+    <p style="font-size: 1.5em" th:text="'Password: ' + ${uzer.userPass}"></p>
+    <p style="font-size: 1.5em" th:text="'Item Name: ' + ${uzer.itemName}"></p>
+    <p style="font-size: 1.5em" th:text="'Item Description: ' + ${uzer.itemDescription}"></p>
+    <p style="font-size: 1.5em">FILE LIST TBD</p>
 </div>
 
 </body>
+<script th:src="@{js/scripts.js}"></script>
 </html>

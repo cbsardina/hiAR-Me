@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <title>Login</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="static/styles.css"/>
+    <link rel="stylesheet" th:href="@{static/styles.css}"/>
 </head>
 <body>
 <h1 style="text-align: center">Login</h1>
@@ -14,11 +14,11 @@
         <table style="text-align: center">
             <tr>
                 <td style="font-size: 1em">Username:</td>
-                <td><input style="font-size: 1em" type="text" name="username"/></td>
+                <td><input style="font-size: 1em" type="text" name="useremail"/></td>
             </tr>
             <tr>
                 <td style="font-size: 1em">Password:</td>
-                <td><input style="font-size: 1em" type="password" name="password"/></td>
+                <td><input style="font-size: 1em" type="password" name="userpass"/></td>
             </tr>
             <tr>
                 <td colspan="2" align="center">

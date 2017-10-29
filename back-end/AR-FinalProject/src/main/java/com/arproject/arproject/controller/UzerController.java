@@ -17,11 +17,17 @@ public class UzerController {
     @Autowired
     UzerService uzerService;
 
+/** * * * * * * * *
+     Login, '/' redirect, & LogOut
+ */
     @GetMapping("/Login")
     public String login() { return "login"; }
 
-    @GetMapping
+    @GetMapping("/")
     public String redirLogin() { return "redirect:/Login"; }
+
+    @GetMapping("/loggedout")
+    public String redirLogout() { return "redirect:/Login"; }
 
 /** * * * * * * * *
      Create User
@@ -40,10 +46,9 @@ public class UzerController {
                 newUzer.setUserEnabled(true);
                 newUzer.setUserAuth(UzerAuth.ROLE_USER);
                 newUzer.setFirstLastName(firstLastName);
-            newUzer = uzerService.addUzer(newUzer);
-            int userId = newUzer.getId();
+                    uzerService.addUzer(newUzer);
 
-            return "userInfo/" + userId;
+            return "login";
     }
 
 /** * * * * * * * *

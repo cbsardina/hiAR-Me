@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <title>Add New User</title>
-    <link rel="stylesheet" href="static/styles.css"/>
+    <link rel="stylesheet" th:href="@{static/styles.css}"/>
 
 </head>
 <body>
@@ -12,16 +12,6 @@
 <header>
     <h1>Create Your User Profile</h1>
 </header>
-
-<!--<div style="display: flex; flex-direction: row; justify-content: space-around">-->
-    <!--<div sec:authorize="isAuthenticated()">-->
-        <!--<form th:action="@{/logout}" method="post">-->
-            <!--<input type="submit" value="Sign Out"/>-->
-        <!--</form>-->
-    <!--</div>-->
-    <!--<a href="/customers"><h3>Back</h3></a>-->
-<!--</div>-->
-
 
 <div class="addUser">
     <form firstLastName="addForm" action="/SignUp" method="POST">
