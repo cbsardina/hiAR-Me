@@ -3,6 +3,7 @@ package com.arproject.arproject.controller;
 
 import com.arproject.arproject.model.Uzer;
 import com.arproject.arproject.model.UzerAuth;
+import com.arproject.arproject.model.UzerItem;
 import com.arproject.arproject.service.UzerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 public class UzerController {
@@ -89,8 +91,9 @@ public class UzerController {
     @GetMapping("/updateUserItems/{userId}")
     public String getUserItemsUpdate(@PathVariable("userId") int userId, Model model) {
         Uzer uzer = uzerService.getUzerById(userId);
-        //TODO: have to add iteration of all items per user
+        List<UzerItem> uzerItems = uzerService.getUzerById(userId).getUserItems();
             model.addAttribute("uzer", uzer);
+            model.addAttribute("uzerItems", uzerItems);
         return "updateItems";
     }
 
