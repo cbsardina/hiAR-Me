@@ -1,10 +1,11 @@
-package com.arproject.arproject;
+package com.arproject.arproject.web;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
@@ -16,14 +17,13 @@ import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 
-/**             *** FROM THYMELEAF EXAMPLE ***
+/**
  * Spring MVC and Thymeleaf configuration.
  */
-
 @Configuration
 @ComponentScan
 @EnableWebMvc
-public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
+public class SpringWebConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
 
     private ApplicationContext applicationContext;
 
@@ -94,7 +94,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
         templateResolver.setCacheable(true);
         return templateResolver;
     }
-
+    @Primary
     @Bean
     public SpringTemplateEngine templateEngine(){
         // SpringTemplateEngine automatically applies SpringStandardDialect and
@@ -116,5 +116,6 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
         viewResolver.setTemplateEngine(templateEngine());
         return viewResolver;
     }
+
 
 }

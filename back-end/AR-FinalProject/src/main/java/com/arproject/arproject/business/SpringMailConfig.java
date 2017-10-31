@@ -1,8 +1,4 @@
-package com.arproject.arproject.config;
-
-import java.io.IOException;
-import java.util.Collections;
-import java.util.Properties;
+package com.arproject.arproject.business;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -10,6 +6,7 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
@@ -22,10 +19,13 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 import org.thymeleaf.templateresolver.StringTemplateResolver;
 
+import java.io.IOException;
+import java.util.Collections;
+import java.util.Properties;
 
 @Configuration
 @PropertySource("classpath:mail/emailconfig.properties")
-public class MailConfig implements ApplicationContextAware, EnvironmentAware {
+public class SpringMailConfig implements ApplicationContextAware, EnvironmentAware {
 
     public static final String EMAIL_TEMPLATE_ENCODING = "UTF-8";
 

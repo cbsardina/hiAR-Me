@@ -1,6 +1,8 @@
 package com.arproject.arproject;
 
-import com.arproject.arproject.config.MailConfig;
+import com.arproject.arproject.business.SpringBusinessConfig;
+import com.arproject.arproject.business.SpringMailConfig;
+import com.arproject.arproject.web.SpringWebConfig;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -19,12 +21,12 @@ public class SpringWebApplicationInitializer extends AbstractAnnotationConfigDis
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class<?>[] { WebConfig.class };
+        return new Class<?>[] { SpringWebConfig.class };
     }
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[] { MailConfig.class};
+        return new Class<?>[] { SpringBusinessConfig.class, SpringMailConfig.class};
     }
 
     @Override
@@ -39,4 +41,5 @@ public class SpringWebApplicationInitializer extends AbstractAnnotationConfigDis
         encodingFilter.setForceEncoding(true);
         return new Filter[] { encodingFilter };
     }
+
 }
