@@ -1,20 +1,27 @@
 package com.arproject.arproject.controller;
 
 import com.arproject.arproject.model.Visitor;
+import com.arproject.arproject.service.EmailService;
 import com.arproject.arproject.service.VisitorService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 
 @RestController
 public class VisitorControllerApi {
 
     @Autowired
     VisitorService visitorService;
+
+    @Autowired
+    EmailService emailService;
 
 /** * * * * * * * *
      JSON to Java Obj
@@ -24,9 +31,10 @@ public class VisitorControllerApi {
 /** * * * * * * * *
      Add Visitor
  */
-    @PostMapping("/api/visitor/add_visitor")
-    public Visitor addNewVisitor(@RequestBody String json) throws IOException {
+    @PostMapping("/api/visitor/add_visitor_send_email")
+    public Visitor addNewVisitor(@RequestBody String json, final Locale locale) throws MessagingException, IOException {
         Visitor visitor = objMap.readValue(json, Visitor.class);
+        this.emailService.sendEditableEmail(visitor.getVisitorName(), visitor.getVisitorEmail(), locale);
         return visitorService.addVisitor(visitor);
     }
 
@@ -54,6 +62,15 @@ public class VisitorControllerApi {
             visitorService.deleteAll();
         }
         return "DATABASE DELETED";
+    }
+
+/** * * * * * * * *
+     Email Specific
+ */
+    @GetMapping("/editable.html")
+    public String editableEmail(final Model model) throws IOException {
+        model.addAttribute("baseTemplate", this.emailService.getEditableMailTemplate());
+        return "editable";
     }
 
 /** * * * * * * * *
