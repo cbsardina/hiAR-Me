@@ -101,7 +101,7 @@ public class UzerController {
     public String updateUserItems(@PathVariable("userId") int userId,
                                  @RequestParam("itemName") String itemName,
                                  @RequestParam("itemDescription") String itemDescription,
-                                 @RequestParam("fileUpload") File[] fileUpload) {
+                                 @RequestParam("fileUploads") File[] fileUploads) {
         //TODO: FTP and setFileName for each item.
 
         return "redirect:/userInfo/" + userId;
