@@ -4,7 +4,6 @@
     <meta charset="UTF-8"/>
     <title>Login</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" th:href="@{static/styles.css}"/>
 </head>
 <body>
 <h1 style="text-align: center">Login</h1>
@@ -13,12 +12,12 @@
     <form th:action="@{/Login}" method="POST">
         <table style="text-align: center">
             <tr>
-                <td style="font-size: 1em">Username:</td>
-                <td><input style="font-size: 1em" type="text" name="useremail"/></td>
+                <td style="font-size: 1em">User Email:</td>
+                <td><input style="font-size: 1em" type="text" name="username"/></td>
             </tr>
             <tr>
                 <td style="font-size: 1em">Password:</td>
-                <td><input style="font-size: 1em" type="password" name="userpass"/></td>
+                <td><input style="font-size: 1em" type="password" name="password"/></td>
             </tr>
             <tr>
                 <td colspan="2" align="center">
@@ -26,10 +25,11 @@
                     <input style="font-size: 1em" type="reset" value="Reset"/></td>
             </tr>
             <tr>
-                <a href="signUp.html"><h3>Create Account</h3></a>
+                <a th:href="@{/SignUp}"><h3>Create Account</h3></a>
             </tr>
         </table>
     </form>
 </div>
 
 </body>
+</html>

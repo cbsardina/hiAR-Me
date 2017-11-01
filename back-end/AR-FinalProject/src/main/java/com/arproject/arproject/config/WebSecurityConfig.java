@@ -17,17 +17,16 @@ import javax.sql.DataSource;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    DataSource dataSource;
+    private DataSource dataSource;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 //          @formatter: off
-                        //TODO: MAKE SURE ALL ROUTES ARE CORRECTED WITH && ACCOUNTING FOR ONLY SPECIFIC USER ID
+
             http
                 .authorizeRequests()
-                    .antMatchers("/", "/Login", "/SignUp").permitAll()
+                    .antMatchers("/", "/Login", "/SignUp", "/mail/home", "/mail/sendSimple").permitAll()
                     .antMatchers("/admin").hasRole("ADMIN")
-                    .antMatchers("/user").hasRole("USER")
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()
@@ -44,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
             auth
                 .jdbcAuthentication().dataSource(this.dataSource)
-                .usersByUsernameQuery("SELECT useremail, userpass, userenabled FROM uzer WHERE useremail = ?")
-                .authoritiesByUsernameQuery("SELECT useremail, userauth FROM uzer WHERE useremail = ?");
+                .usersByUsernameQuery("SELECT username, password, true FROM uzer WHERE username = ?")
+                .authoritiesByUsernameQuery("SELECT username, userauth FROM uzer WHERE username = ?");
     }
 }

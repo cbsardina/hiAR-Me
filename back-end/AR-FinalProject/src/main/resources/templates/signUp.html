@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <title>Add New User</title>
-    <link rel="stylesheet" th:href="@{static/styles.css}"/>
+    <link rel="stylesheet" th:href="@{static/styles}"/>
 
 </head>
 <body>
@@ -14,14 +14,14 @@
 </header>
 
 <div class="addUser">
-    <form firstLastName="addForm" action="/SignUp" method="POST">
-        <input type="text" name="firstLastName" placeholder="Your Name" required/>
-        <input type="text" name="userEmail" placeholder="YourEmail@email.com" required/>
-        <input type="password" name="userPass" placeholder="Password" required/>
-        <input type="password" name="passCompare" placeholder="Re-Enter Your Password" required/>
+    <form firstLastName="addForm" th:action="@{/SignUp}" method="POST">
+        <input type="text" name="firstLastName" placeholder="Your Name" th:required="required"/>
+        <input type="text" name="userEmail" placeholder="YourEmail@email.com" th:required="required"/>
+        <input type="password" name="userPass" placeholder="Password" th:required="required"/>
+        <input type="password" name="passCompare" placeholder="Re-Enter Your Password" th:required="required"/>
         <button type="submit">Add</button>
         <tr>
-            <h3>Already have an account? <a href="login.html">Login</a></h3>
+            <h3>Already have an account? <a th:href="@{/login}">Login</a></h3>
         </tr>
     </form>
 </div>

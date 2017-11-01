@@ -2,7 +2,6 @@ package com.arproject.arproject.controller;
 
 
 import com.arproject.arproject.model.Uzer;
-import com.arproject.arproject.model.UzerAuth;
 import com.arproject.arproject.model.UzerItem;
 import com.arproject.arproject.service.UzerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +25,13 @@ public class UzerController {
     @GetMapping(value = {"/Login", "/", "/loggedout"})
     public String login() { return "login"; }
 
+    @PostMapping("/Login")
+    public String loginRender(@RequestParam("username") String username) {
+        Uzer uzer = uzerService.getUzerByEmail(username);
+
+        return "redirect:/userInfo/" + uzer.getId();
+    }
+
 /** * * * * * * * *
      Create User
  */
@@ -35,16 +41,15 @@ public class UzerController {
     @PostMapping("/SignUp")
     public String addUzer(@RequestParam(value = "firstLastName") String firstLastName,
                         @RequestParam(value = "userEmail") String userEmail,
-                        @RequestParam(value = "userPass") String userPass,
-                        @RequestParam(value = "passCompare") String passCompare) {
+                        @RequestParam(value = "userPass") String userPass) {
             Uzer newUzer = new Uzer();
                 newUzer.setUserEmail(userEmail);
                 newUzer.setUserPass(userPass);
                 newUzer.setUserEnabled(true);
-                newUzer.setUserAuth(UzerAuth.ROLE_USER);
+                newUzer.setUserAuth("ROLE_USER");
                 newUzer.setFirstLastName(firstLastName);
                     uzerService.addUzer(newUzer);
-            return "login";
+            return "redirect:/login";
     }
 
 /** * * * * * * * *

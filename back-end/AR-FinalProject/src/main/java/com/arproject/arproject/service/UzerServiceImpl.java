@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 @Service
 @Transactional
@@ -21,9 +22,20 @@ public class UzerServiceImpl implements UzerService {
     @Autowired
     UzerItemRepository uzerItemRepository;
 
-/** * * * * * * * *
+    /** * * * * * * * *
             *** USER METHODS ***
  */
+    @Override
+    public Uzer getUzerByEmail(String email) {
+        List<Uzer> allUzers = uzerRepository.findAll();
+        for(Uzer uzer: allUzers) {
+            if (uzer.getUserEmail().equals(email)) {
+                return uzer;
+            }
+        }
+        return null;
+    }
+
     @Override
     public Uzer getUzerById(int id) {
         return uzerRepository.findOne(id);

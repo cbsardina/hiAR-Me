@@ -6,6 +6,7 @@ import com.arproject.arproject.model.UzerItem;
 public interface UzerService {
 
   // *** Uzer ***
+    Uzer getUzerByEmail(String email);
     Uzer getUzerById(int id);
     Uzer addUzer(Uzer uzer);
     Uzer updateUzer(Uzer uzer);

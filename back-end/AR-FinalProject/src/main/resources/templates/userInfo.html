@@ -26,11 +26,11 @@
     <p style="font-size: 1.5em" th:text="'Name: ' + ${uzer.firstLastName}"></p>
     <p style="font-size: 1.5em" th:text="'Email/Username: ' + ${uzer.userEmail}"></p>
     <p style="font-size: 1.5em" th:text="'Password: ' + ${uzer.userPass}"></p>
-    <p><a th:href="@{templates/updateInfo.html}">Update your info</a></p>
+    <p><a th:href="'/updateUserInfo/' + ${uzer.getId()}">Update your info</a></p>
     <p style="font-size: 1.5em" th:text="'Item Name: ' + ${uzer.itemName}"></p>
     <p style="font-size: 1.5em" th:text="'Item Description: ' + ${uzer.itemDescription}"></p>
     <p style="font-size: 1.5em">FILE LIST TBD</p>
-    <p><a th:href="@{templates/updateItems.html}">Update/add your items or files</a></p>
+    <p><a th:href="'/updateUserItems/' + ${uzer.getId()}">Update/add your items or files</a></p>
 </div>
 
 </body>

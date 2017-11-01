@@ -1,7 +1,6 @@
 package com.arproject.arproject.controller;
 
 import com.arproject.arproject.model.Uzer;
-import com.arproject.arproject.model.UzerAuth;
 import com.arproject.arproject.model.UzerItem;
 import com.arproject.arproject.security.HashSalt;
 import com.arproject.arproject.service.UzerService;
@@ -41,7 +40,7 @@ public class UzerControllerApi {
     public Uzer addUzer(@RequestBody String json) throws IOException {
         Uzer newUzer = objMap.readValue(json, Uzer.class);
             newUzer.setUserEnabled(true);
-            newUzer.setUserAuth(UzerAuth.ROLE_USER);
+            newUzer.setUserAuth("ROLE_USER");
         return uzerService.addUzer(newUzer);
     }
 /** * * * * * * * *

@@ -18,7 +18,7 @@
 </div>
 
 <div class="updateItems">
-    <form name="addForm" th:action="'/updateUserItems/' + ${uzer.getId()}" enctype="multipart/form-data" method="POST">
+    <form name="addForm" th:action="@{'/updateUserItems/' + ${uzer.getId()}}" enctype="multipart/form-data" method="POST">
         <input type="text" name="itemName" placeholder="Name of item or file"/>
         <input type="text" name="itemDescription" placeholder="Description of item or file"/>
         <div>
@@ -30,7 +30,7 @@
         </div>
         <button type="submit">Update/Add</button>
     </form>
-    <h2 style="text-align: center">Already have an account? <a href="login.html">Login</a></h2>
+    <h2 style="text-align: center"><a th:href="'/userInfo/' + ${uzer.getId()}">Back to your info</a></h2>
 </div>
 
 </body>

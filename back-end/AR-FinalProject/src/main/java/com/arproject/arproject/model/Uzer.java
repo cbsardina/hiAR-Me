@@ -12,7 +12,7 @@ public class Uzer {
     private String userEmail;
     private String userPass;
     private Boolean userEnabled;
-    private UzerAuth userAuth;
+    private String userAuth;
     private String firstLastName;
     private List<UzerItem> userItems = new ArrayList<>();
 
@@ -25,12 +25,12 @@ public class Uzer {
 
     public void setId(int id) { this.id = id; }
 
-    @Column(name = "useremail")
+    @Column(name = "username")
     public String getUserEmail() { return userEmail; }
 
     public void setUserEmail(String userEmail) { this.userEmail = userEmail; }
 
-    @Column(name = "userpass")
+    @Column(name = "password")
     public String getUserPass() { return userPass; }
 
     public void setUserPass(String userPass) { this.userPass = userPass; }
@@ -41,9 +41,9 @@ public class Uzer {
     public void setUserEnabled(Boolean userEnabled) { this.userEnabled = userEnabled; }
 
     @Column(name = "userauth")
-    public UzerAuth getUserAuth() { return userAuth; }
+    public String getUserAuth() { return userAuth; }
 
-    public void setUserAuth(UzerAuth userAuth) { this.userAuth = userAuth; }
+    public void setUserAuth(String userAuth) { this.userAuth = userAuth; }
 
     @Column(name = "firstlastname")
     public String getFirstLastName() { return firstLastName; }
