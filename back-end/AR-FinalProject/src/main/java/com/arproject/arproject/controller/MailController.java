@@ -4,14 +4,16 @@ import com.arproject.arproject.model.MailObject;
 import com.arproject.arproject.service.EmailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
+import javax.mail.internet.MimeMessage;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,12 +46,40 @@ public class MailController {
 
     @PostMapping("/mail/sendSimple")
     public String sendSimpleEmail(Model model,
-                                  @ModelAttribute("mailObject") @Valid MailObject mailObject, Errors err) {
-        if (err.hasErrors()) {
-            return "emailError";
+                                  @ModelAttribute("mailObject") @Valid MailObject mailObject) {
+        try {
+            emailService.sendSimpleMessage(mailObject.getTo(), mailObject.getSubject(), mailObject.getText());
+            return "emailSuccess";
+        } catch (Exception ex) {
+            return "Error Sending Email v1: " + ex;
         }
-        emailService.sendSimpleMessage(mailObject.getTo(), mailObject.getSubject(), mailObject.getText());
-        return "emailSuccess";
+    }
+
+
+    //TODO: BUILD EMAIL WITH THIS:
+    @Autowired
+    private JavaMailSender sender;
+
+    @RequestMapping("/simpleemail")
+    @ResponseBody
+    String home() {
+        try {
+            sendEmail();
+            return "Email Sent!";
+        } catch (Exception ex) {
+            return "Error Sending Email v2: " + ex;
+        }
+    }
+
+    private void sendEmail() throws Exception {
+        MimeMessage message = sender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+
+        helper.setTo("cbsardina@gmail.com");
+        helper.setText("Hope this works");
+        helper.setSubject("Second Method");
+
+        sender.send(message);
     }
 
 }
