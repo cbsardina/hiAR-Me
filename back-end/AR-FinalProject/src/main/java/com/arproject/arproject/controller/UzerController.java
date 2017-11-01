@@ -23,14 +23,8 @@ public class UzerController {
 /** * * * * * * * *
      Login, '/' redirect, & LogOut
  */
-    @GetMapping("/Login")
+    @GetMapping(value = {"/Login", "/", "/loggedout"})
     public String login() { return "login"; }
-
-    @GetMapping("/")
-    public String redirLogin() { return "redirect:/Login"; }
-
-    @GetMapping("/loggedout")
-    public String redirLogout() { return "redirect:/Login"; }
 
 /** * * * * * * * *
      Create User
