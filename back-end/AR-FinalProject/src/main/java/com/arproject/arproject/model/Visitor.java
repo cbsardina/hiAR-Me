@@ -10,6 +10,7 @@ public class Visitor {
     private String visitorName;
     private String visitorEmail;
     private String visitorComments;
+    private String emailConfirmation;
 
 /** * * * * * * * *
      GETTERs/SETTERs
@@ -35,7 +36,12 @@ public class Visitor {
 
     public void setVisitorComments(String visitorComments) { this.visitorComments = visitorComments; }
 
-/** * * * * * * * *
+    @Column(name = "emailconfirmation")
+    public String getEmailConfirmation() { return emailConfirmation; }
+
+    public void setEmailConfirmation(String emailConfirmation) { this.emailConfirmation = emailConfirmation; }
+
+    /** * * * * * * * *
      Equals & hashCode
  */
     @Override
@@ -63,6 +69,7 @@ public class Visitor {
                 ", visitorName='" + visitorName + '\'' +
                 ", visitorEmail='" + visitorEmail + '\'' +
                 ", visitorComments='" + visitorComments + '\'' +
+                ", emailConfirmation='" + emailConfirmation + '\'' +
                 '}';
     }
 }

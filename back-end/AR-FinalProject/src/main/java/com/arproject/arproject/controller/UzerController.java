@@ -50,7 +50,6 @@ public class UzerController {
                 newUzer.setUserAuth(UzerAuth.ROLE_USER);
                 newUzer.setFirstLastName(firstLastName);
                     uzerService.addUzer(newUzer);
-
             return "login";
     }
 
@@ -78,12 +77,9 @@ public class UzerController {
     public String updateUserInfo(@PathVariable("userId") int userId,
                                  @RequestParam("firstLastName") String firstLastName,
                                  @RequestParam("userEmail") String userEmail,
-                                 @RequestParam("itemName") String itemName,
-                                 @RequestParam("itemDescription") String itemDescription,
-                                 @RequestParam("fileUpload") File[] fileUpload) {
+                                 @RequestParam("userItem") List<UzerItem> userItems) {
         Uzer uzer = uzerService.getUzerById(userId);
-            uzer.setFirstLastName(firstLastName);
-            uzer.setUserEmail(userEmail);
+            uzer.setId(userId);
                 uzerService.updateUzer(uzer);
         return "redirect:/userInfo/" + userId;
     }
@@ -96,17 +92,6 @@ public class UzerController {
             model.addAttribute("uzerItems", uzerItems);
         return "updateItems";
     }
-
-    @PostMapping("/updateUserInfo/{userId}")
-    public String updateUserItems(@PathVariable("userId") int userId,
-                                 @RequestParam("itemName") String itemName,
-                                 @RequestParam("itemDescription") String itemDescription,
-                                 @RequestParam("fileUpload") File[] fileUpload) {
-        //TODO: FTP and setFileName for each item.
-
-        return "redirect:/userInfo/" + userId;
-    }
-
 
 /** * * * * * * * *
      Exception Handling
